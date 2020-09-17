@@ -22,15 +22,23 @@ helpSet = frozenset(["help","-h","--h","-help","--help"])
 def printHelp ():
     print("\n")
     print("~~~~~~~~~~~AGE CALCULATOR HELP~~~~~~~~~~~~")
+    print("This program finds the age of a person given their date of birth and the current date\n")
     print("Date should be entered month day year")
     print("month is between 1-12")
     print("day is between 1-31")
     print("year is between 1-9999")
     print("Delimeters accepted are ',' ':' '-' and any whitespace")
+    
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 
 
 dateOfBirthInput = input("Enter Date of Birth month, day, then year: ")
+
+res = [ele for ele in helpSet if(ele in dateOfBirthInput)] 
+if(bool(res)):
+    printHelp()
+    raise SystemExit
 
 try:
     dateOfBirthInput = dateOfBirthInput.replace(","," ")
@@ -38,7 +46,7 @@ try:
     dateOfBirthInput = dateOfBirthInput.replace(":"," ")
 
 except:
-    print("\n","Date not recognized. Delimeters accepted are ',' ':' '-' and any whitespace")
+    print("\nDate not recognized. Delimeters accepted are ',' ':' '-' and any whitespace")
     print("typing 'help' will show help instructions")
     raise SystemExit
 
@@ -46,7 +54,7 @@ try:
     month, day, year = dateOfBirthInput.split()
     
 except:
-    print("\n","Date not recognized. Did you enter enough information?")
+    print("\nDate not recognized. Did you enter enough information?")
     print("typing 'help' will show help instructions")
     raise SystemExit
 
@@ -54,7 +62,7 @@ try:
     dateOfBirth = datetime.date(int(year), int(month), int(day))
     
 except ValueError:
-    print("\n","Date not recognized. Try month (between 1-12), day(between 1-31), year")
+    print("\nDate not recognized. Try month (between 1-12), day(between 1-31), year")
     print("typing 'help' will show help instructions")
     raise SystemExit
 
@@ -65,19 +73,24 @@ print(dateOfBirth)
 
 currentDateInput = input("Enter Current Date month, day, then year: ")
 
+res = [ele for ele in helpSet if(ele in currentDateInput)] 
+if(bool(res)):
+    printHelp()
+    raise SystemExit
+
 try:
     currentDateInput = currentDateInput.replace(","," ")
     currentDateInput = currentDateInput.replace("-"," ")
     currentDateInput = currentDateInput.replace(":"," ")
 except:
-    print("\n","Date not recognized. Delimeters accepted are ',' ':' '-' and any whitespace")
+    print("\nDate not recognized. Delimeters accepted are ',' ':' '-' and any whitespace")
     print("typing 'help' will show help instructions")
     raise SystemExit  
 
 try:
     month, day, year = currentDateInput.split()
 except:
-    print("\n","Date not recognized. Did you enter enough information?")
+    print("\nDate not recognized. Did you enter enough information?")
     print("typing 'help' will show help instructions")
     raise SystemExit    
 
@@ -85,11 +98,13 @@ try:
     currentDate = datetime.date(int(year), int(month), int(day))
     
 except ValueError:
-    print("\n","Date not recognized. Try month (between 1-12), day(between 1-31), year")
+    print("\nDate not recognized. Try month (between 1-12), day(between 1-31), year")
     print("typing 'help' will show help instructions")
     raise SystemExit
 
 print(currentDate)
+
+
 
 age = currentDate - dateOfBirth
 age_days = age.days
